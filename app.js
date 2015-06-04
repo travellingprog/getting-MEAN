@@ -7,12 +7,19 @@ var bodyParser = require('body-parser');
 require('./app_api/models/db');
 var uglifyJs = require("uglify-js");
 var fs = require('fs');
+var webpack = require('webpack');
+var webpackSetup = require('./webpackSetup');
 
 var routes = require('./app_server/routes/index');
 var routesApi = require('./app_api/routes/index');
 // var users = require('./app_server/routes/users');
 
 var app = express();
+
+// Set up client code compilation via Webpack
+var compiler = webpack(webpackSetup.compilerConfiguration);
+webpackSetup.trackProgress(compiler);
+compiler.watch(webpackSetup.watchOptions, webpackSetup.errorHandler);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -56,7 +63,7 @@ app.use(express.static(path.join(__dirname, 'app_client')));
 app.use('/api', routesApi);
 
 app.use(function(req, res) {
-  res.sendFile(path.join(__dirname, 'app_client', 'index.html'));
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 // catch 404 and forward to error handler

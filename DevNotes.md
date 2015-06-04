@@ -1,6 +1,23 @@
 # TO DO
 
-* How do we tie Webpack into the backend?
+	* Remove the files I do not need
+
+
+# Adding Webpack
+
+	* Make and modify **public/index.html**.
+
+	* Set up [webpack-dev-server middleware](http://webpack.github.io/docs/webpack-dev-server.html)... or not
+
+	* Remove the unnecessary routes
+
+	* Remove the **minification/concatenation** step in app.js.
+
+	* Remove **public/angular** folder (what to do with rating-start.html?)
+
+	* No need for **/lib/angular-route.min.js** and **/lib/angular-sanitize.min.js**.
+
+	* Remove jQuery? (Need for validation.js, might need for Bootstrap)
 
 
 # Backend Setup
